@@ -27,7 +27,9 @@ export default class UI {
       { selector: '#button_video', cb: this.showPopup.bind(this, 'video', this.initVideo, this.destoryVideo) },
       { selector: '#button_offers', cb: this.showPopup.bind(this, 'offers') },
       { selector: '#button_team', cb: this.showPopup.bind(this, 'team', this.initSlider, this.destroySlider) },
-      { selector: '#button_logo', cb: this.showPopup.bind(this, 'logo', this.initSlider, this.destroySlider) }
+      { selector: '#button_logo', cb: this.showPopup.bind(this, 'logo', this.initSlider, this.destroySlider) },
+      { selector: '#button_logov', cb: this.showPopup.bind(this, 'logov', this.initSlider, this.destroySlider) }
+
 
     ]
     events.forEach(event => {
