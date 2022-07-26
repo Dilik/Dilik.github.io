@@ -247,7 +247,7 @@ canvas {
   width: 70%;
   height: 70%;
   padding: 50px 100px;
-  background: #00000070;
+  background: #000000cf;
   filter: drop-shadow(2px 4px 100px #1b1b1be6);
   overflow: hidden;
   overflow-y: auto;
@@ -262,12 +262,12 @@ canvas {
 }
 
 .popup__subtitle {
-  color: var(--secondaryColor);
-  margin: 0;
-  letter-spacing: 1px;
+  color: #ffffff;
+  margin: 0%;
+  letter-spacing: 0px;
   opacity: 0;
-  font: 500 18px Roboto, sans-serif;
-  margin-bottom: 30px;
+  font: 800 15px Roboto, sans-serif;
+  margin-bottom: 10px;
 }
 
 .popup--animated .popup__title {
@@ -780,7 +780,7 @@ iframe {
   transition: 400ms 100ms var(--contentTransitionBezier);
 }
 .content-section__image-holder:nth-of-type(2) {
-  transform: translate(100px, -50%);
+  transform: translate(150px, -50%);
   transition: 400ms 150ms var(--contentTransitionBezier);
 }
 .content-section__image-holder:nth-of-type(3) {
@@ -793,9 +793,9 @@ iframe {
 }
 
 .content-section__image {
-  width: 100%;
+  width: 95%;
   height: 100%;
-  object-fit: cover;
+  object-fit: scale-down;
   border-radius: inherit;
 }
 
