@@ -14,7 +14,7 @@ body {
 }
 
 a {
-  color: #e03a3c;
+  color: #9acc77;
   text-decoration: none;
 }
 
@@ -470,12 +470,12 @@ section {
 .clients .swiper-pagination .swiper-pagination-bullet {
   width: 12px;
   height: 12px;
-  background-color: #fff;
+  background-color: #9acc77;
   opacity: 1;
-  border: 1px solid #e03a3c;
+  border: 1px solid #aaaaaa;
 }
 .clients .swiper-pagination .swiper-pagination-bullet-active {
-  background-color: #e03a3c;
+  background-color: #398860;
 }
 .clients .swiper-slide img {
   opacity: 0.5;
@@ -1114,13 +1114,13 @@ section {
   font-weight: 700;
   margin-bottom: 5px;
   font-size: 18px;
-  color: #111111;
+  color: #398860;
 }
 .team .member .member-info span {
   display: block;
   font-size: 13px;
   font-weight: 400;
-  color: #aaaaaa;
+  color: #9acc77;
 }
 .team .member .member-info p {
   font-style: italic;
