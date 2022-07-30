@@ -538,7 +538,7 @@ iframe {
 .content-section {
   width: 100%;
   height: 100%;
-  display: flex;
+  display: flex; 
   flex-direction: column;
   align-items: center;
   justify-content: center;
@@ -1008,7 +1008,7 @@ iframe {
   .content-services,
   .content-section__images,
   .content-portfolio__images {
-    display: flex;
+    display: block;
   }
 
   .content-holder--left-align {
