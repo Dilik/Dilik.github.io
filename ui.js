@@ -12,9 +12,9 @@ let slider = null
 let popup = null
 
 export default class UI {
-  constructor (callback) {
+  constructor(callback) {
     constructorCb = callback
-    
+
     followElements = uiWrapper.querySelectorAll('[data-follow]')
     this.getFollowElementsPosition()
 
@@ -22,7 +22,7 @@ export default class UI {
       { selector: '.burger', cb: this.toggleMenu },
       { selector: '.fixed-content-header__contact', cb: this.onPagingClick.bind(this) },
       { selector: '.fixed-content-paging', cb: this.onPagingClick.bind(this) },
-      { selector: '.logo-swiper', cb: this.onLogoClick.bind(this)},
+      { selector: '.logo-swiper', cb: this.onLogoClick.bind(this) },
       { selector: '.menu-list', cb: this.onMenuPagingClick.bind(this) },
       { selector: '#button_video', cb: this.showPopup.bind(this, 'video', this.initVideo, this.destoryVideo) },
       { selector: '#button_offers', cb: this.showPopup.bind(this, 'offers') },
@@ -45,22 +45,22 @@ export default class UI {
     }
   }
 
-  ui_moveEvent (e, Use2DTextOver3D) {
+  ui_moveEvent(e, Use2DTextOver3D) {
     this.buttonMoveAnimation(e)
     if (Use2DTextOver3D) {
       this.mainLetters2DAnimation(e)
     }
   }
 
-  buttonMoveAnimation (e) {
+  buttonMoveAnimation(e) {
     const mouseLeft = e.clientX
     const mouseTop = e.clientY
     let elementAlreadyCentered = { y: false }
     followElements.forEach((element, index) => {
       const elementPositions = followElementsPositions[index]
       // If cursor is close to the button element then move the button closer to the cursor;
-      if (mouseLeft > elementPositions.left - 100 && mouseLeft < elementPositions.right + 100 && 
-          mouseTop > elementPositions.top - 100 && mouseTop < elementPositions.bottom + 100) {
+      if (mouseLeft > elementPositions.left - 100 && mouseLeft < elementPositions.right + 100 &&
+        mouseTop > elementPositions.top - 100 && mouseTop < elementPositions.bottom + 100) {
         const moveX = (elementPositions.left - mouseLeft) / 10
         const moveY = (elementPositions.top - mouseTop) / 10
 
@@ -79,9 +79,9 @@ export default class UI {
     })
   }
 
-  mainLetters2DAnimation (e) {
+  mainLetters2DAnimation(e) {
     const letters = document.querySelector('.configuration__letters')
-    
+
     if (letters) {
       const xCenter = window.innerWidth / 2
       const yCenter = window.innerHeight / 2
@@ -91,8 +91,8 @@ export default class UI {
     }
   }
 
-  showPopup (popupType, createCallback, destroyCallback) {
-    if (typeof createCallback === 'function') createCallback() 
+  showPopup(popupType, createCallback, destroyCallback) {
+    if (typeof createCallback === 'function') createCallback()
     popup = uiWrapper.querySelector(`[data-popup=${popupType}]`)
     popup.classList.add('popup--active')
     // First remove display: none, then add animated class;
@@ -106,7 +106,7 @@ export default class UI {
     }, 0)
   }
 
-  hidePopup (event) {
+  hidePopup(event) {
     if (event.target !== event.currentTarget) return
     popup.classList.remove('popup--active')
     popup.classList.remove('popup--animated')
@@ -115,19 +115,19 @@ export default class UI {
     if (typeof popup._eventParameter === 'function') popup._eventParameter()
   }
 
-  initSlider () {
+  initSlider() {
     const sliderElement = uiWrapper.querySelector('#slider')
     const leftArrow = uiWrapper.querySelector('.slider__arrow-left')
     const rightArrow = uiWrapper.querySelector('.slider__arrow-right')
     slider = new Slider(sliderElement, leftArrow, rightArrow)
   }
 
-  destroySlider () {
+  destroySlider() {
     slider.destroy()
     slider = null
   }
 
-  initVideo () {
+  initVideo() {
     if (!videoElementSource) return
     const videoElement = document.querySelector('#video')
     if (videoElement) {
@@ -135,7 +135,7 @@ export default class UI {
     }
   }
 
-  destoryVideo () {
+  destoryVideo() {
     const videoElement = document.querySelector('#video')
     if (videoElement) {
       videoElementSource = videoElement.src
@@ -144,44 +144,45 @@ export default class UI {
     }
   }
 
-  toggleMenu () {
+  toggleMenu() {
     uiWrapper.classList.toggle('menu-opened')
     uiWrapper.querySelector('.burger').classList.toggle('burger--active')
   }
 
-  ui_moveScene (direction) {
+  ui_moveScene(direction) {
     this.checkContentVisibility(direction)
   }
 
-  onMenuPagingClick (e) {
+  onMenuPagingClick(e) {
     this.toggleMenu()
     this.onPagingClick(e)
   }
 
-  onPagingClick (e) {
+  onPagingClick(e) {
     const datasetPage = +e.target.dataset.page
     if (datasetPage >= 0) {
       constructorCb().onPagingClick(datasetPage)
     }
   }
 
-  onLogoClick(e){
+  onLogoClick(e) {
     const logoImage = +e.target.dataset.page
-    if(logoImage >= 0){
+    if (logoImage >= 0) {
       constructorCb().onLogoClick(datasetPage)
     }
   }
 
-  getFollowElementsPosition () {
+  getFollowElementsPosition() {
     followElementsPositions = []
     followElements.forEach(element => followElementsPositions.push(element.getBoundingClientRect()))
   }
 
-  checkContentVisibility (direction) {
+  checkContentVisibility(direction) {
     const contentSections = uiWrapper.querySelectorAll('[data-page]')
+
     const animateSection = section => {
       // Add different class depending on scroll direction.
-      if (direction === 'down')  {
+      if (direction === 'down') {
         section.classList.add('section--hidden')
         section.classList.remove('section--hidden-reverse')
       } else {
@@ -190,7 +191,11 @@ export default class UI {
       }
 
       if (+section.dataset.page === constructorCb().getCurrentPage()) {
-        section.style.display = 'flex'
+        if (window.innerWidth < 500) {
+          section.style.display = 'block'
+        } else {
+          section.style.display = 'flex'
+        } 
         const removeClass = () => section.classList.remove('section--hidden', 'section--hidden-reverse')
         window.requestAnimationFrame(() => {
           window.requestAnimationFrame(removeClass)
